@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sorteio de Grupos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255, 255, 255, 0.06);
+      --text: #f8fafc;
+      --muted: #9aa6c1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Outfit, Segoe UI, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, #2a1a5c 0%, transparent 40%),
+        radial-gradient(circle at 85% 0%, #123a5c 0%, transparent 38%),
+        linear-gradient(180deg, #10172b, var(--bg));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 56px;
+    }
+
+    header {
+      text-align: center;
+      max-width: 640px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.03em;
+    }
+
+    header p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    button {
+      border: 0;
+      background: linear-gradient(135deg, #7c5cff, #3ec6ff);
+      color: white;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 14px 32px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(92, 110, 255, 0.35);
+    }
+
+    button:hover { transform: translateY(-1px); }
+
+    #grupos {
+      width: min(1100px, 100%);
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .vazio {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--muted);
+      background: var(--panel);
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      padding: 36px 20px;
+    }
+
+    .grupo {
+      background: var(--panel);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 22px 22px 10px;
+      animation: entrar 0.45s ease both;
+    }
+
+    .grupo:nth-child(1) { --tom: #7c5cff; animation-delay: 0.05s; }
+    .grupo:nth-child(2) { --tom: #3ec6ff; animation-delay: 0.12s; }
+    .grupo:nth-child(3) { --tom: #ff7ab6; animation-delay: 0.19s; }
+    .grupo:nth-child(4) { --tom: #ffd166; animation-delay: 0.26s; }
+
+    .grupo h2 {
+      margin: 0 0 16px;
+      font-size: 1.2rem;
+      color: var(--tom);
+    }
+
+    .pessoa {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 14px;
+    }
+
+    .inicial {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      background: color-mix(in srgb, var(--tom) 25%, transparent);
+      color: var(--tom);
+      flex-shrink: 0;
+    }
+
+    .pessoa span {
+      font-size: 1.12rem;
+      font-weight: 600;
+    }
+
+    @keyframes entrar {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 600px) {
+      .pessoa span { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sorteio de Grupos</h1>
+    <p>12 pessoas · 4 grupos de 3 · clique para sortear</p>
+    <button id="sortear" type="button">Sortear grupos</button>
+  </header>
+  <section id="grupos" aria-live="polite">
+    <div class="vazio">Os grupos aparecem aqui, sem numeração.</div>
+  </section>
+
+  <script>
+    const PESSOAS = [
+      "Sofia",
+      "Wilson",
+      "Kauan",
+      "Ana Julia",
+      "Luiz",
+      "Elon",
+      "Caique",
+      "Marcio",
+      "Dude",
+      "Samuel",
+      "Pedro",
+      "Vinicius",
+    ];
+
+    const NOMES_GRUPOS = [
+      "Grupo CPU",
+      "Grupo GPU",
+      "Grupo RAM",
+      "Grupo SSD",
+    ];
+
+    function embaralhar(lista) {
+      const copia = [...lista];
+      const aleatorio = new Uint32Array(copia.length);
+      crypto.getRandomValues(aleatorio);
+      for (let i = copia.length - 1; i > 0; i--) {
+        const j = aleatorio[i] % (i + 1);
+        [copia[i], copia[j]] = [copia[j], copia[i]];
+      }
+      return copia;
+    }
+
+    function inicial(nome) {
+      return nome.trim().charAt(0).toUpperCase();
+    }
+
+    function sortear() {
+      const pessoas = embaralhar(PESSOAS);
+      const nomes = embaralhar(NOMES_GRUPOS);
+      const gruposEl = document.getElementById("grupos");
+      gruposEl.innerHTML = "";
+
+      for (let g = 0; g < 4; g++) {
+        const membros = pessoas.slice(g * 3, g * 3 + 3);
+        const card = document.createElement("article");
+        card.className = "grupo";
+        card.innerHTML = `
+          <h2>${nomes[g]}</h2>
+          ${membros.map((nome) => `
+            <div class="pessoa">
+              <div class="inicial">${inicial(nome)}</div>
+              <span>${nome}</span>
+            </div>
+          `).join("")}
+        `;
+        gruposEl.appendChild(card);
+      }
+    }
+
+    document.getElementById("sortear").addEventListener("click", sortear);
+  </script>
+</body>
+</html>
