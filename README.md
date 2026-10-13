@@ -7,10 +7,11 @@ próprio histórico. O código do site está separado em `html/`, `css/` e `js/`
 
 ## Executar
 
-É necessário ter Python 3.9 ou superior. No diretório do projeto, execute:
+É necessário ter Node.js LTS instalado. No diretório do projeto, execute:
 
 ```powershell
-python server.py
+npm install
+npm start
 ```
 
 Abra `http://localhost:8000`. O servidor escuta em todas as interfaces de rede
@@ -32,5 +33,5 @@ servidor a uma interface específica, defina `HOST` antes de iniciá-lo.
 ## Testes
 
 ```powershell
-python -m unittest
+npm test
 ```

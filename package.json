@@ -1,0 +1,26 @@
+{
+  "name": "sorteio-grupos",
+  "version": "1.0.0",
+  "description": "O site permite criar uma conta com login e senha, informar participantes, escolher\r a quantidade de grupos, validar uma divisão com o mesmo número de pessoas em cada\r grupo e salvar os resultados em um banco SQLite. Cada usuário acessa somente seu\r próprio histórico. O código do site está separado em `html/`, `css/` e `js/`.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test_server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicius-melo-work/Teams-Shake.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vinicius-melo-work/Teams-Shake/issues"
+  },
+  "homepage": "https://github.com/vinicius-melo-work/Teams-Shake#readme",
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "express": "^5.3.0"
+  }
+}
