@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teams Shake</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="cabecalho-titulo">
+      <div>
+        <p class="marca">TEAMS SHAKE · SORTEIOS INTELIGENTES</p>
+        <h1>Teams Shake</h1>
+        <p>Conecte pessoas, forme times e acompanhe todos os sorteios em um só lugar.</p>
+      </div>
+      <div class="conta">
+        <span id="nome-usuario"></span>
+        <button id="sair" class="botao-secundario" type="button">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="area-sorteio">
+    <form id="form-sorteio" class="painel-sorteio">
+      <div class="secao-participantes">
+        <label id="rotulo-participantes">Nomes dos participantes</label>
+        <div id="participantes" aria-labelledby="rotulo-participantes"></div>
+        <button id="adicionar-participante" class="botao-secundario" type="button">+ Adicionar participante</button>
+        <p class="ajuda">Adicione um campo para cada participante.</p>
+      </div>
+      <div>
+        <label for="quantidade-grupos">Quantidade de grupos</label>
+        <input id="quantidade-grupos" name="quantidade-grupos" type="number" min="1" step="1" value="4" required />
+      </div>
+      <p id="resumo" aria-live="polite">Adicione os nomes para validar a divisão.</p>
+      <p id="mensagem" role="status" aria-live="polite"></p>
+      <button id="sortear" type="submit">Sortear grupos</button>
+    </form>
+    <section class="resultado-area">
+      <div class="section-heading"><p class="marca">RESULTADO DA RODADA</p><h2>Seus grupos</h2></div>
+      <section id="grupos" aria-live="polite" aria-label="Resultado do sorteio">
+        <div class="vazio">Os grupos sorteados aparecerão aqui.</div>
+      </section>
+    </section>
+
+    <section id="historico" aria-labelledby="titulo-historico">
+      <div class="section-heading"><p class="marca">SEU ARQUIVO</p><h2 id="titulo-historico">Sorteios salvos</h2></div>
+      <div id="lista-historico"><p class="vazio">Carregando sorteios salvos...</p></div>
+    </section>
+  </main>
+
+  <script src="/js/app.js" defer></script>
+</body>
+</html>

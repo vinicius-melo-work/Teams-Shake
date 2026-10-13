@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acesso — Teams Shake</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body class="pagina-acesso">
+  <main class="auth-shell">
+    <section class="auth-hero" aria-label="Sobre o Teams Shake">
+      <div class="marca"><span class="emblema">TS</span><span>TEAMS SHAKE</span></div>
+      <div class="hero-copy">
+        <p class="eyebrow">SORTEIOS INTELIGENTES · EDIÇÃO 01</p>
+        <h1>Monte seu time.<br><span>Viva o momento.</span></h1>
+        <p class="hero-support" hidden>Uma experiência elegante para criar sorteios, formar grupos e guardar cada resultado da sua jornada.</p>
+      </div>
+    </section>
+    <section class="auth-panel" aria-label="Autenticação">
+      <div class="auth-heading">
+        <p class="eyebrow">ACESSO SEGURO</p>
+        <h2 id="titulo-autenticacao">Bem-vindo de volta</h2>
+        <p id="subtitulo-autenticacao">Entre para acessar seus sorteios e continuar de onde parou.</p>
+      </div>
+      <div class="auth-tabs" role="tablist" aria-label="Autenticação">
+        <button class="auth-tab ativo" id="aba-login" type="button" role="tab" aria-selected="true" aria-controls="form-login">Entrar</button>
+        <button class="auth-tab" id="aba-cadastro" type="button" role="tab" aria-selected="false" aria-controls="form-cadastro">Criar conta</button>
+      </div>
+      <form id="form-login" class="form-auth">
+        <label for="login-email">E-mail</label>
+        <input id="login-email" type="email" required autocomplete="email" placeholder="voce@exemplo.com" />
+        <label for="login-password">Senha</label>
+        <input id="login-password" type="password" required minlength="8" autocomplete="current-password" placeholder="Sua senha" />
+        <p id="mensagem-login" class="mensagem-auth" role="alert"></p>
+        <button class="botao-principal" type="submit">Entrar no Teams Shake</button>
+      </form>
+      <form id="form-cadastro" class="form-auth oculto">
+        <label for="cadastro-nome">Nome</label>
+        <input id="cadastro-nome" type="text" required autocomplete="name" placeholder="Como podemos chamar você?" />
+        <label for="cadastro-email">E-mail</label>
+        <input id="cadastro-email" type="email" required autocomplete="email" placeholder="voce@exemplo.com" />
+        <label for="cadastro-password">Senha</label>
+        <input id="cadastro-password" type="password" required minlength="8" autocomplete="new-password" placeholder="Digite sua senha" />
+        <label for="cadastro-password-confirmacao">Confirmar senha</label>
+        <input id="cadastro-password-confirmacao" type="password" required minlength="8" autocomplete="new-password" placeholder="Digite novamente a mesma senha" />
+        <ul class="requisitos-senha" aria-label="Requisitos da senha">
+          <li data-requisito="tamanho"><span class="requisito-icone" aria-hidden="true">×</span><span>Mínimo de 8 caracteres</span></li>
+          <li data-requisito="minuscula"><span class="requisito-icone" aria-hidden="true">×</span><span>Uma letra minúscula</span></li>
+          <li data-requisito="maiuscula"><span class="requisito-icone" aria-hidden="true">×</span><span>Uma letra maiúscula</span></li>
+          <li data-requisito="numero"><span class="requisito-icone" aria-hidden="true">×</span><span>Um número</span></li>
+          <li data-requisito="especial"><span class="requisito-icone" aria-hidden="true">×</span><span>Um caractere especial</span></li>
+        </ul>
+        <p id="mensagem-cadastro" class="mensagem-auth" role="alert"></p>
+        <button class="botao-principal" type="submit">Criar minha conta</button>
+      </form>
+      <p class="nota-seguranca"><span aria-hidden="true">◆</span> Seus dados ficam protegidos e separados por usuário.</p>
+    </section>
+  </main>
+  <script src="/js/login.js" defer></script>
+</body>
+</html>
