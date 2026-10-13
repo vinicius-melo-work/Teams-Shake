@@ -1,6 +1,6 @@
 # Teams Shake
 
-O site permite criar uma conta com login e senha, informar participantes, escolher
+O site Teams Shake utiliza Node.js no servidor, cria contas com login e senha, informa participantes, escolhe
 a quantidade de grupos, validar uma divisão com o mesmo número de pessoas em cada
 grupo e salvar os resultados em um banco SQLite. Cada usuário acessa somente seu
 próprio histórico. O código do site está separado em `html/`, `css/` e `js/`.
